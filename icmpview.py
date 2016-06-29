@@ -33,13 +33,13 @@ def decode_ip_packet(s):
     return d
 
 def print_packet(pktlen, data, timestamp):
-  if not data:
-    return
-  if data[12:14]=='\x08\x00':
-    decoded=decode_ip_packet(data[14:])
-    current_date = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
-    if decoded['destination_address'] == localip and decoded['source_address'] != localip:
-        print '[*]%s Ping From: %s' % (current_date, decoded['source_address'])
+    if not data:
+        return
+    if data[12:14]=='\x08\x00':
+        decoded=decode_ip_packet(data[14:])
+        current_date = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
+        if decoded['destination_address'] == localip and decoded['source_address'] != localip:
+            print '[*]%s Ping From: %s' % (current_date, decoded['source_address'])
 
 if __name__=='__main__':
     if len(sys.argv) < 2:
